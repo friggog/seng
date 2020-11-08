@@ -1,0 +1,12 @@
+Package: me.chewitt.seng
+Name: seng
+Depends: mobilesubstrate, applist, firmware (>=8.0), preferenceloader
+Conflicts: com.joshdoctors.cclivebrightness, net.limneos.bioprotect, com.a3tweaks.auxo3ios9, org.thebigboss.lylac, net.angelxwind.mikoto(<<2.9-beta-1), org.thebigboss.switchertweakpro
+Version: 1.2.1
+Architecture: iphoneos-arm
+Description: App Switcher / Control Center replacement for iOS 8 & 9.
+Maintainer: Charlie Hewitt <contact@chewitt.me>
+Author: Charlie Hewitt <contact@chewitt.me>
+Section: Tweaks
+Icon: file:///Library/PreferenceBundles/sengPrefs.bundle/sengBig.png
+Depiction: http://chewitt.me/repo/depictions/seng.html

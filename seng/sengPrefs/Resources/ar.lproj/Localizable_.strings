@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HOT_CORNERS</key>
+	<string>زوايا الساخنة</string>
+	<key>MULTI_CENTRE</key>
+	<string>مركز تحكم متعدد</string>
+	<key>OTHER</key>
+	<string>خيارات اخرى</string>
+	<key>SUPPORT</key>
+	<string>الدعم</string>
+	<key>TWITTER_MESSAGE</key>
+	<string>انا استخدم اداة Seng من @friggog استبدال مبدل التطبيقات و مركز التحكم بشكل جديد , شوكرن @abo1bs</string>
+	<key>al_CANCEL</key>
+	<string>الغاء</string>
+	<key>al_EMAIL_ERROR</key>
+	<string>الظاهر ماتقدر ترسل ايميل لانك مافعلته</string>
+	<key>al_ENTER</key>
+	<string>ادخل</string>
+	<key>al_ENTER_VALUE</key>
+	<string>الرجاء ادخال قيمة بين %.01f و %.01f.</string>
+	<key>al_ERROR</key>
+	<string>خطا</string>
+	<key>al_NEGATE</key>
+	<string>Negate</string>
+	<key>al_OK</key>
+	<string>موافق</string>
+	<key>al_POINT</key>
+	<string>Point</string>
+	<key>al_TWEET_ERROR</key>
+	<string>ما اقدر اغرد الحين</string>
+	<key>al_VALID_VALE</key>
+	<string>الرجاء التاكد من ادخال قيمة صالحة.</string>
+	<key>as_HIDE_WHEN_UNAVAILABLE</key>
+	<string>اخفاء اذا لم تكون متوفرة</string>
+	<key>el_SYSTEM_APPLICATIONS</key>
+	<string>تطبيقات النظام</string>
+	<key>el_USER_APPLICATIONS</key>
+	<string>تطبيقات المستخدم</string>
+	<key>hc_ACTIONS_FOOTER</key>
+	<string>السحب للاعلى من زوايا اسفل الشاشة سيتم تطبيق الاجراءات الي اخترتها بالاعلى</string>
+	<key>hc_ALT_QUICK_SWITCHER</key>
+	<string>استخدام الاسلوب البديل</string>
+	<key>hc_CLOSE_APP</key>
+	<string>اغلاق التطبيق</string>
+	<key>hc_GESTURE_TOLERANCE</key>
+	<string>حد الحركة</string>
+	<key>hc_GESTURE_TOLERANCE_FOOTER</key>
+	<string>هذا يحدد كم مدى من الزوايا يمكن لك السحب للاعلى لتنفيذ اجراء الزوايا الساخنة</string>
+	<key>hc_GO_TO_HOME_SCREEN_FOOTER</key>
+	<string>اذا فعلت القفل من الشاشة الرئيسية فان الاجراء الي راح يكون هو قفل الشاشة.
+اذا فعلت حركة بسيطة للشاشة الرئيسية سيتم استخدام حركة عمودية بسيطة اكثر من الحركة الافتراضية.</string>
+	<key>hc_LEFT_ACTION</key>
+	<string>الزاوية يسار</string>
+	<key>hc_LOCK_FROM_HOME</key>
+	<string>قفل من الشاشة الرئيسية</string>
+	<key>hc_NONE</key>
+	<string>لاشي</string>
+	<key>hc_QUICK_SWITCHER</key>
+	<string>التبديل السريع</string>
+	<key>hc_QUICK_SWITCHER_FOOTER</key>
+	<string>الاسلوب البديل يعمل مثل المبدل السريع في اداة Tage, ولكن الاسلوب العادي هو اشبه باداة Auxo.</string>
+	<key>hc_QUIT_APP</key>
+	<string>انهاء التطبيق</string>
+	<key>hc_SIMPLE_HOME</key>
+	<string>حركة بسيطة للشاشة الرئيسية</string>
+	<key>mc_BOTTOM</key>
+	<string>اسفل</string>
+	<key>mc_CONTROL_SECTIONS_FOOTER</key>
+	<string>قسم التحكم  يضيف في اعلى واسفل مركز تحكم متعدد</string>
+	<key>mc_CONTROL_SECTIONS_TITLE</key>
+	<string>قسم التحكم</string>
+	<key>mc_ENABLED</key>
+	<string>تفعيل</string>
+	<key>mc_EXCLUDED_SECTIONS</key>
+	<string>غير مضاف</string>
+	<key>mc_GESTURE_ANIMATIONS</key>
+	<string>حركة الايماءات</string>
+	<key>mc_GESTURE_ANIMATIONS_FOOTER</key>
+	<string>اذا فعلتها فان الحركة عند فتح او اغلاق مبدل التطبيقات ستكون مثل الافتراضي بمركز التحكم والاشعارات.
+اجبار الفتح عالتطبيق الحالي.</string>
+	<key>mc_ICON_STYLE_FOOTER</key>
+	<string>شكل الايقونات المعروضة في مبدل التطبيقات</string>
+	<key>mc_ICON_STYLE_HIDDEN</key>
+	<string>اخفاء</string>
+	<key>mc_ICON_STYLE_OVERLAPPED</key>
+	<string>فوق بعض</string>
+	<key>mc_ICON_STYLE_STANDARD</key>
+	<string>افتراضي</string>
+	<key>mc_ICON_STYLE_TITLE</key>
+	<string>شكل الايقونات</string>
+	<key>mc_INCLUDED_SECTIONS</key>
+	<string>مضاف</string>
+	<key>mc_OPEN_TO_CURRENT</key>
+	<string>الفتح للتطبيق الحالي</string>
+	<key>mc_OPEN_TO_CURRENT_FOOTER</key>
+	<string>اذا فعلتها فان مبدل التطبيقات راح يفتح للتطبيق المفتوح حاليا, بدلا من التطبيق المفتوح قبل.</string>
+	<key>mc_TOP</key>
+	<string>اعلى</string>
+	<key>mv_HIDE_WHEN_PLAYING</key>
+	<string>اخفاء وانت مشغل شي</string>
+	<key>mv_SHOW_WHEN_PLAYING</key>
+	<string>تظهر فقط لما تكون مشغل شي</string>
+	<key>op_APPEARANCE</key>
+	<string>المظهر</string>
+	<key>op_APP_WHITELIST</key>
+	<string>استثناء تطبيق</string>
+	<key>op_BEHAVIOUR</key>
+	<string>السلوك</string>
+	<key>op_BEHAVIOUR_FOOTER</key>
+	<string>هنا تقدر تختار اي تطبيق تريد استثناءة وعدم تنشيط اجراء الزوايا الساخنة من داخل هالتطبيق.</string>
+	<key>op_BLACKLIST</key>
+	<string>استثناء تطبيق</string>
+	<key>op_CLOSE_NOW_PLAYING</key>
+	<string>اغلاق التطبيق الي يعمل الان</string>
+	<key>op_DISMISS_AFTER</key>
+	<string>اخفاء المبدل بعدها</string>
+	<key>op_HIDE_BG</key>
+	<string>اخفاء الخلفية الضبابية</string>
+	<key>op_HOME_APP_CARD</key>
+	<string>بطاقة الشاشة الرئيسية</string>
+	<key>op_LOCK</key>
+	<string>قفل الشاشة</string>
+	<key>op_NONE</key>
+	<string>ولاشي</string>
+	<key>op_QUIT_ALL_APPS</key>
+	<string>انهاء كل التطبيقات</string>
+	<key>op_REMOVE_DARK_EFFECT</key>
+	<string>ازالة تاثير الظلام</string>
+	<key>op_RESPRING</key>
+	<string>اعادة تشغيل سريع</string>
+	<key>op_SHOW_ACTION_MENU</key>
+	<string>اظهار قائمة الاجراءان</string>
+	<key>op_SHUT_DOWN</key>
+	<string>اطفاء الجهاز</string>
+	<key>op_SWIPE_UP</key>
+	<string>اجراء السحب للاعلى</string>
+	<key>op_SWIPE_UP_FOOTER</key>
+	<string>هذا الاجراء عشان تختار وش تبي يسوي لما تسحب بطاقة الشاشة الرئيسية للاعلى من مبدل التطبيقات, كانك تقفلها يعني.</string>
+	<key>pv_INFO</key>
+	<string>معلومات</string>
+	<key>pv_INFO_FOOTER</key>
+	<string>عشان تعرض جهات الاتصال المفضلة لديك لازم تكون مفعل خيار عرض في المبدل من جهات الاتصال والبريد الالكتروني.</string>
+	<key>rm_FOOTER</key>
+	<string>انت مفعل عندك تقليل الحركة, اداة Seng ايضن راح تعدل حركتها من اجل استيعاب هذا افضل, بالتالي فان بعض الخيارات لم تعد متاحة. حركة الايماءات معطله ويتم استبدال حركة الذهاب للشاشة الرئيسية مع تلاشي سلس.</string>
+	<key>rm_TITLE</key>
+	<string>تقليل الحركة</string>
+	<key>sp_BRIGHTNESS_FOOTER</key>
+	<string>هناك مشكلة معروفة مع SimpleCenters عند ضبط شريع السطوع, لاطلاح المشكلة قم بتعطيل جميع خيارات شريط السطوع في SimpleCenters.</string>
+	<key>sp_BRIGHTNESS_TITLE</key>
+	<string>تحطم شريط السطوع</string>
+	<key>sp_COMPAT_FOOTER</key>
+	<string>بعض الادوات معروف انها غير متوافقة مع seng لو عندك اي مشكلة حاول تعطيل او حذف واحد من هذي الادوات:
+- CCControls</string>
+	<key>sp_COMPAT_TITLE</key>
+	<string>مشاكل التوافق</string>
+	<key>sp_EMAIL</key>
+	<string>الايميل</string>
+	<key>sp_GET_IN_TOUCH</key>
+	<string>تواصل معنا</string>
+	<key>sp_INFO</key>
+	<string>اذا عندك اي مشكلة يشنب او طلب او تبي تساعد بالترجمة او انت مطور وتبي تضيف توافق لاداتك لا تتردد بارسال ايميل</string>
+	<key>st_AIR_STUFF</key>
+	<string>AirDrop و AirPlay</string>
+	<key>st_BIG_SCROLL</key>
+	<string>عرض تمرير كبير</string>
+	<key>st_BRIGHTNESS</key>
+	<string>شريط السطوع</string>
+	<key>st_DEFAULT_MEDIA</key>
+	<string>التحكم بالموسيقى الافتراضي</string>
+	<key>st_MEDIA_BUTTONS</key>
+	<string>ازرار توقيف, تقديم, ترجيع الموسيقى</string>
+	<key>st_MEDIA_SCRUBBER</key>
+	<string>الشريط الي يمشي حق الاغاني</string>
+	<key>st_MEDIA_TITLES</key>
+	<string>عرض اسم الاغنية</string>
+	<key>st_PEOPLE</key>
+	<string>جهات الاتصال المفضلة</string>
+	<key>st_QUICK_LAUNCH</key>
+	<string>ازرار التشغيل السريع</string>
+	<key>st_SMALL_SCROLL</key>
+	<string>عرض تمرير صغير</string>
+	<key>st_TOGGLES</key>
+	<string>ازرار التبديل</string>
+	<key>st_VOLUME</key>
+	<string>شريط حجم الصوت</string>
+	<key>sv_EXCLUDED_SECTIONS</key>
+	<string>الاقسام المستبعدة</string>
+	<key>sv_HORIZONTAL</key>
+	<string>افقي</string>
+	<key>sv_INCLUDED_SECTIONS</key>
+	<string>الاقسام المضافة</string>
+	<key>sv_RESETS_TO_FIRST</key>
+	<string>الرجوع الى اول صفحة</string>
+	<key>sv_RESET_TO_FIRST_FOOTER</key>
+	<string>الرجوع لاول صفحة راح يخلي عرض التمرير يرجع لاول صفحة كل مرة تفتح مبدل التطبيقات</string>
+	<key>sv_SCROLLING_STYLE</key>
+	<string>نمط التمرير</string>
+	<key>sv_VERTICAL</key>
+	<string>عمودي</string>
+	<key>tw_ACTION_MENU</key>
+	<string>قائمة الاجراءات</string>
+	<key>tw_CANCEL</key>
+	<string>الغاء</string>
+	<key>tw_HOME</key>
+	<string>الرئيسية</string>
+	<key>tw_LOCK</key>
+	<string>قفل الشاشة</string>
+	<key>tw_QUIT_ALL</key>
+	<string>انهاء كل التطبيقات</string>
+	<key>tw_REBOOT</key>
+	<string>اعادة تشغيل</string>
+	<key>tw_RESPRING</key>
+	<string>اعادة تشغيل سريع</string>
+	<key>tw_SAFE_MODE</key>
+	<string>السيف مود</string>
+	<key>tw_SHUT_DOWN</key>
+	<string>اطفاء الجهاز</string>
+</dict>
+</plist>

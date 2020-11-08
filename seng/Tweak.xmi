@@ -1,0 +1,242 @@
+#import "SengContainerView.h"
+
+extern "C" void BKSTerminateApplicationForReasonAndReportWithDescription(NSString *app, int a, int b, NSString *description);
+
+static SengContainerView *bottomContainerView;
+static SengContainerView *topContainerView;
+static SBWorkspace *workspace;
+static SengOverrideCCGestureType overrideCCGestureType = SengOverrideCCGestureTypeNone;
+static UIView *cornerHomeAnimationView;
+static BOOL isAppSwitcherActive;
+static SBAppSwitcherIconView *hsIconView;
+static BOOL needsAnimationOverrideForHomeScreenCardReset;
+static UIWindow *darkeningOverlayForLockOnHS;
+static UIWindow *oldKeyWindowToReplaceOverlayWithOnFinish;
+static BOOL needsFixForLandscape = YES;
+static BOOL lastSwitcherOrientationLandscape;
+static NSMutableArray *blacklistedApps;
+static NSMutableArray *whitelistedQuitAllApps;
+static BOOL overrideDismissSwitcherAnimation;
+static BOOL isMediaPlaying;
+static BOOL reduceMotionEnabled;
+static CGFloat switcherIconsPerPage;
+static BOOL quickSwitcherOrientationWasPortrait;
+static BOOL wantsPanGestureOverrideForDismissGesture;
+static BOOL areAppSwitcherIconLabelsHidden;
+static BOOL currentGestureItemIsDismissing;
+static BOOL hackyFixForAppSwitcherOpenGesture;
+static BOOL switcherJustOpenedFromApp;
+static BOOL weirdReduceMotionQuickSwitcherFix;
+static SBFAnimationFactory *cornerHomeAnimationFactory = [%c(SBFAnimationFactory) factoryWithDuration:0.3];
+static BSUIAnimationFactory *ios9cornerHomeAnimationFactory = [%c(BSUIAnimationFactory) factoryWithDuration:0.3];
+static BSUIAnimationFactory *ios9standardAnimationFactory = [%c(BSUIAnimationFactory) factoryWithDuration:0.35];
+static NSMutableArray * displayLayoutsToBeQuitOnSwitcherOpen = [NSMutableArray array];
+
+#define sengSBFAnimationFactory (versionCorrectSwitcherController()._transitionAnimationFactory)
+#define isLockScreenActive ((SBLockScreenManager*)[%c(SBLockScreenManager) sharedInstance]).isUILocked
+#define prefsIconStlye (prefValueForKey(@"iconStyle", NO) ? [prefValueForKey(@"iconStyle", NO) integerValue]:1)
+#define frontMostApplication ((SpringBoard *)[UIApplication sharedApplication])._accessibilityFrontMostApplication
+
+static NSDictionary *preferenceDictionary;
+static NSDictionary *manualPreferenceDictionary;
+static BOOL forceReload;
+static BOOL nineForceReload;
+
+SengSBScreenEdgePanGestureRecognizer *panLeft, *panRight;
+
+static inline id prefValueForKey(NSString *key, BOOL negate) {
+    if (negate) {
+        return [NSNumber numberWithBool:! [preferenceDictionary[key] boolValue]];
+    }
+    else {
+        return preferenceDictionary[key];
+    }
+}
+
+static void updatePrefs() {
+    preferenceDictionary = [NSDictionary dictionaryWithContentsOfFile:PREFS_PATH];
+    manualPreferenceDictionary = [NSDictionary dictionaryWithContentsOfFile:PREFS_PATH_MANUAL];
+    whitelistedQuitAllApps = [NSMutableArray array];
+    NSDictionary *wlDic = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/me.chewitt.seng.whitelist.plist"];
+    for (id key in [wlDic allKeys]) {
+        if ([[wlDic valueForKey:key] boolValue] == YES) {
+            [whitelistedQuitAllApps addObject:key];
+        }
+    }
+    NSDictionary *blDic = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/me.chewitt.seng.blacklist.plist"];
+    blacklistedApps = [NSMutableArray array];
+    for (id key in [blDic allKeys]) {
+        if ([[blDic valueForKey:key] boolValue] == YES) {
+            [blacklistedApps addObject:key];
+        }
+    }
+    if(panLeft && panRight)
+        panLeft.enabled = panRight.enabled = [prefValueForKey(@"swipeToSwitch", NO) boolValue] && UIInterfaceOrientationIsPortrait([(SpringBoard *)[UIApplication sharedApplication] activeInterfaceOrientation]);
+}
+
+static void PreferencesChangedCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
+    updatePrefs();
+    if(IS_IOS_(9,0)){
+        nineForceReload = YES;
+        MSHookIvar<SBAppSwitcherSettings*>([%c(SBMainSwitcherViewController) sharedInstance],"_settings").switcherStyle = ![prefValueForKey(@"multiCentreEnabled", YES) boolValue];
+        [[%c(SBMainSwitcherViewController) sharedInstance] _updateContentViewControllerClassFromSettings];
+    }
+    else {
+        forceReload = YES;
+        [[[%c(SBUIController) sharedInstance] switcherController] setupViews];
+        forceReload = NO;
+    }
+}
+
+static void ReduceMotionEnabled(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
+    reduceMotionEnabled = YES;
+}
+
+static void ReduceMotionDisabled(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
+    reduceMotionEnabled = NO;
+}
+
+@implementation SengShared
+
++ (NSDictionary *)manualPrefsDic {
+    return manualPreferenceDictionary;
+}
+
++ (NSDictionary *)prefsDic {
+    return preferenceDictionary;
+}
+
++ (BOOL)forceReload {
+    return forceReload;
+}
+
++ (BOOL)isMediaPlaying {
+    return isMediaPlaying;
+}
+
++ (SBFAnimationFactory *)sengAnimationFactory {
+    return sengSBFAnimationFactory;
+}
+
++ (CGFloat)switcherIconsPerPage {
+    return switcherIconsPerPage;
+}
+
++ (SengContainerView*)bottomContainerView {
+    return bottomContainerView;
+}
+
++ (SengContainerView *)topContainerView {
+    return topContainerView;
+}
+
++ (BOOL)isAppSwitcherActive {
+    return isAppSwitcherActive;
+}
+
++(id) hsIconView {
+    return hsIconView;
+}
+
++(BOOL) areAppSwitcherIconLabelsHidden {
+    return areAppSwitcherIconLabelsHidden;
+}
+
++(BOOL) reduceMotionEnabled {
+    return reduceMotionEnabled;
+}
+
+@end
+
+@implementation SengAnimator
+
++(void) animateWithActions:(void (^)(void))actions completion:(void(^)(BOOL))comp {
+    if(IS_IOS_(9,0)) {
+        [%c(BSUIAnimationFactory) animateWithFactory:ios9standardAnimationFactory actions:actions completion:comp];
+    }
+    else {
+        [%c(SBFAnimationFactory) animateWithFactory:sengSBFAnimationFactory actions:actions completion:comp];
+    }
+}
+
++(void) animateWithActions:(void (^)(void))actions {
+    if(IS_IOS_(9,0)) {
+        [%c(BSUIAnimationFactory) animateWithFactory:ios9standardAnimationFactory actions:actions];
+    }
+    else {
+        [%c(SBFAnimationFactory) animateWithFactory:sengSBFAnimationFactory actions:actions];
+    }
+}
+
++(void) fastAnimateWithActions:(void (^)(void))actions completion:(void(^)(BOOL))comp {
+    if(IS_IOS_(9,0)) {
+        [%c(BSUIAnimationFactory) animateWithFactory:ios9cornerHomeAnimationFactory actions:actions completion:comp];
+    }
+    else {
+        [%c(SBFAnimationFactory) animateWithFactory:cornerHomeAnimationFactory actions:actions completion:comp];
+    }
+}
+
++(void) fastAnimateWithActions:(void (^)(void))actions {
+    if(IS_IOS_(9,0)) {
+        [%c(BSUIAnimationFactory) animateWithFactory:ios9cornerHomeAnimationFactory actions:actions];
+    }
+    else {
+        [%c(SBFAnimationFactory) animateWithFactory:cornerHomeAnimationFactory actions:actions];
+    }
+}
+
+@end
+
+#include "hooks_iOS8.xm"
+#include "hooks_iOS9.xm"
+#include "hooks_both.xm"
+
+%group AXPrefs
+
+%hook AXReduceMotionController
+
+- (void)setPreferenceValue:(id)v specifier:(id)s {
+    %orig;
+    if ([v boolValue]) {
+        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("me.chewitt.seng.reduceMotionEnabled"), NULL, NULL, YES);
+    }
+    else {
+        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("me.chewitt.seng.reduceMotionDisabled"), NULL, NULL, YES);
+    }
+}
+
+%end
+
+%end //AXPrefs
+
+%ctor {
+/*    NSDate *today = [NSDate date];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:22];
+    [comps setMonth:12];
+    [comps setYear:2015];
+    NSDate *fin = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    if([today earlierDate:fin] == today) {*/
+        if (IN_APP_(@"com.apple.Preferences")) {
+            dlopen("/System/Library/PreferenceBundles/AccessibilitySettings.bundle/AccessibilitySettings", 2);
+            %init(AXPrefs);
+        }
+        else if(IN_SPRINGBOARD){
+            if(IS_IOS_(9,0)) {
+                %init(SENG_IOS_9);
+            }
+            else {
+                %init(SENG_IOS_8);
+            }
+            %init(SENG_IOS_8_AND_9);
+
+            %init;
+            CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, PreferencesChangedCallback, CFSTR(PREFS_CHANGED_NAME), NULL, CFNotificationSuspensionBehaviorCoalesce);
+            CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, ReduceMotionEnabled, CFSTR("me.chewitt.seng.reduceMotionEnabled"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+            CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, ReduceMotionDisabled, CFSTR("me.chewitt.seng.reduceMotionDisabled"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+            updatePrefs();
+            reduceMotionEnabled = [[NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.Accessibility.plist"][@"ReduceMotionEnabled"] boolValue];
+        }
+    //}
+}

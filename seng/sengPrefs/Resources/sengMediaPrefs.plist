@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>me.chewitt.seng.prefsChanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>sengSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>me.chewitt.seng</string>
+			<key>id</key>
+			<string>sowp</string>
+			<key>key</key>
+			<string>mediaHides</string>
+			<key>label</key>
+			<string>mv_SHOW_WHEN_PLAYING</string>
+			<key>set</key>
+			<string>setHideMedia:specifier:</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>me.chewitt.seng.prefsChanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>sengSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>me.chewitt.seng</string>
+			<key>id</key>
+			<string>hwp</string>
+			<key>key</key>
+			<string>mediaHidesP</string>
+			<key>label</key>
+			<string>mv_HIDE_WHEN_PLAYING</string>
+			<key>set</key>
+			<string>setHideMediaP:specifier:</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>st_DEFAULT_MEDIA</string>
+</dict>
+</plist>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>sp_COMPAT_FOOTER</string>
+			<key>label</key>
+			<string>sp_COMPAT_TITLE</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>sp_BRIGHTNESS_FOOTER</string>
+			<key>label</key>
+			<string>sp_BRIGHTNESS_TITLE</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>sp_INFO</string>
+			<key>label</key>
+			<string>sp_GET_IN_TOUCH</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>composeMail</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>sengButtonCell</string>
+			<key>label</key>
+			<string>sp_EMAIL</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>SUPPORT</string>
+</dict>
+</plist>
